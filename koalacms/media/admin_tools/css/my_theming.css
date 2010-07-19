@@ -1,0 +1,37 @@
+
+#branding {
+	background: url("/media/admin_tools/images/koala_small.gif") no-repeat scroll 10px 4px white;
+	height: 54px;
+	border-bottom: 1px solid lightgray;
+}
+#header .based{
+	color:#888888;
+	font-size:11px;
+	padding-left:80px;
+}
+#header #branding h1 {
+	color:#5B80B2;
+	padding:18px 0 0 80px;
+	height: 19px;
+}
+
+#header #user-tools{
+	color: #555555;
+	padding:1.7em 10px;
+}
+#header a:link, #header a:visited {
+	color:#5B80B2;
+}
+
+div.breadcrumbs {
+    display: block;
+    padding: 10px 15px;
+    border: 0;
+    background-position: 0 -8px;
+    border-bottom: 1px solid #ededed;
+}
+
+div.breadcrumbs a {
+    display: inline;
+}
+

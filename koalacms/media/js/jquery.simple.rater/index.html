@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Jquery Simple Rater Plugin</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<!-- just for samples -->
+    <link href="sample.css" rel="stylesheet" type="text/css" />
+    
+    <!-- plugin css -->
+    <link href="jquery.simple.rater.css" rel="stylesheet" type="text/css" />
+    <!-- The Jquery -->
+	<script type="text/javascript" src="jquery.js"></script>
+    <!-- plugin javascript -->
+	<script type="text/javascript" src="jquery.simple.rater.js"></script>
+    <!-- usage -->
+	<script type="text/javascript">
+        function x(a){alert(a)}
+	$().ready(function(){
+		
+		$('#test').rater({
+	      url: 'vote.php',
+	      mediapath: '',
+	      value: 0
+	    });
+	    
+		// basit kullanım
+		$('#test1').rater({
+	      url: 'vote.php',
+	      mediapath: '',
+	      value: 4
+	    });
+	    // kullanım dışı
+	    $('#test2').rater({
+	      url: 'vote.php',
+	      mediapath: '',
+	      value: 2,
+	      enabled: false
+	    });
+	    
+	    // callback ile kullanımı
+	    $('#test3').rater({
+	      url: 'vote.php',
+	      mediapath: '',
+	      value: 2,
+          callback: callme
+	    });
+	    
+	    // favorilere ekleme biçiminde kullanımı
+	    $('#fav1').rater({
+	      url: 'vote.php',
+	      favstar: true
+	    });
+	    
+	     $('#fav2').rater({
+	      url: 'vote.php',
+	      favstar: true, value:1, enabled:false
+	    });
+	});
+	
+	function callme(vote)
+	{alert(vote)}
+	</script>
+</head>
+<body>
+    <h4>varsayılan</h4>
+	<div id="test"></div>
+    <code>$('#test').rater({
+	      value: 0
+	    });</code>
+    <hr />
+    <h4>basit kullanım</h4>
+	<div id="test1"></div>
+    <code>$('#test1').rater({
+	      url: 'vote.php',
+	      mediapath: '',
+	      value: 4
+	    });</code>
+    <hr />
+    <h4>Kullanım dışı</h4>
+    <div id="test2"></div>
+    <code>$('#test2').rater({
+	      url: 'vote.php',
+	      mediapath: '',
+	      value: 2,
+	      <span class="warn">enabled: false</span>
+	    });</code>
+    <hr />
+    <h4>favorilere ekleme</h4>
+	<div id="fav1"></div>
+    <code>$('#fav1').rater({
+	      url: 'vote.php',
+	      favstar: true
+	    });</code>
+    <hr />
+    <h4>favorilere ekleme, seçili durumda, kullanım dışı</h4>
+	<div id="fav2"></div>
+    <code>$('#fav2').rater({
+	      url: 'vote.php',
+	      favstar: true, <span class="warn">value:1</span>, <span class="warn">enabled:false</span>
+	    });</code>
+    <hr />
+    <h4>Callback ile kullanımı</h4>
+    <div id="test3"></div>
+    <code>$('#test3').rater({
+	      url: 'vote.php',
+	      mediapath: '',
+	      value: 2,
+          callback: callme
+	    });</code>
+    
+    
+    <script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-527600-1");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+
+</body>
+</html>

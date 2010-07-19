@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Shopping cart" %}{% endblock %}
+
+{% block content %}
+<div class="cart">
+	<form action="" method="post">
+	<table><tbody>
+	<tr><th class="name">{% trans "Name" %}</th><th class="cost">{% trans "Cost" %}</th><th class="count">{% trans "Count" %}</th><th class="itogo">{% trans "Итого" %}</th><th class="del">{% trans "Delete" %}</th></tr>
+	{% for product in products %}
+		<tr class="{% cycle 'even' 'odd' %}">
+				<td>{{ product.product.title }}</td>
+				<td>{{ product.cost }}</td>
+				<td>
+					<select name="prd_{{ product.id }}">
+						{% for i in max_products %}
+							<option value="{{ i }}">{{ i }}</option>
+						{% endfor %}
+				   </select>	
+				</td>
+				<td><span id="itogo">{{ product.cost }}</span></td>
+				<td><a href="{% url shop.views.drop_from_cart product.id %}"><img src="/media/css/images/del.png"></a></td>
+		</tr>
+		{% empty %}
+			{% trans "No products in cart" %}
+	{% endfor %}
+	</tbody></table>
+		<table class="delivery_from">
+		{{ order_form.as_table }}
+		</table>
+		<input type="submit" value="{% trans "Next" %}">
+	</form>
+</div>
+{% endblock %}
+{% block sidebar %}
+	{{ block.super }}
+{% endblock %}

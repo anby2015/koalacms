@@ -1,0 +1,9 @@
+{% load i18n %}
+<div class="rt"></div>
+	<div class="block_title">{% trans "Shopping Cart" %}</div>
+	<div class="right_articles">
+	<p>
+		<div id='card_products'>{{ in_cart }}</div>{% trans "products in cart" %}
+		<a href="{% url shop.views.cart %}"><div class="s_bbAdd2Cart">{% trans "Go to cart" %}</div></a>
+	</p>
+</div>
