@@ -1,0 +1,15 @@
+{% load i18n %}
+<div class="new-products">
+	<div class="block_title">{% trans "New products" %}</div>
+	<div class="right_products">
+		<ul>
+		{% for product in products.values %}
+			<li>
+				<a class="prd_a" href="{% url shop.views.product product.id %}"><img src="{% if product.cover %}{{ product.cover.image.thumbnail.url }}{% else %}/media/product/default.jpeg{% endif %}" /></a>
+				<div class="prd_title"><a href="{% url shop.views.product product.id %}">{{ product.title }}</a></div>
+				<div class="prd_cost">{{ product.cost.cost }}</div>
+			</li>
+		{% endfor %}
+		</ul>
+	</div>
+</div>

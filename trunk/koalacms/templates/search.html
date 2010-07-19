@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load shop_tags %}
+
+{% block title %}{% trans "Products" %}{% endblock %}
+
+{% block content %}
+	<form class='search_form' method="get" action="">
+		<table>
+		{{ form.as_table }}
+		</table>
+		<input type="submit" value="Go!" />
+	</form>
+	
+	{% for product in products.values %}
+		<div class="product-block {% cycle 'even' 'odd' %}">
+				<div class="product-image">
+				    <a href="{% url shop.views.product product.id %}"><img alt="{{  product.cover.title }}" src="{% if product.cover %}{{ product.cover.image.cover.url }}{% else %}/media/product/default.jpeg{% endif %}" alt="{{ product.title }}"></a>
+					<div class="cost_change cost_change_{{ forloop.counter }}">
+					{% for option in product.costs %}
+						<div class="cost {% if not forloop.first %}hidden{% endif %}" id="cost_{{ option.id }}">
+							{{ option.cost }}
+							{% if option.old_cost %}<div class='old_cost'>{{ option.old_cost }}</div>{% endif %}
+						</div>
+					{% endfor %}
+					</div>
+					<form action="{% url shop.views.add_to_cart %}" method="post">
+						<select class="cost_change {%ifequal product.costs|length 1 %}hidden{% endifequal %}" id="cost_change_{{ forloop.counter }}" name="cost">
+							{% for option in product.costs %}
+									<option value="{{ option.id }}" {% if forloop.first %}selected{% endif %}>
+										{{ option.title }}
+									</option>
+							{% endfor %}
+						</select>
+					<input type="submit" value="{% trans "Add to cart" %}">
+					</form>	
+				</div>
+				<div class="product_desc">              
+				    <h2 class="product_title"><a  href="{% url shop.views.product product.id %}">{{ product.title }}</a></h2>
+					{% autoescape off %}{{ product.short_description }}{% endautoescape %}
+				</div>
+				
+		</div>
+	{% empty %}
+    	<p>{% trans "No products for this query" %}</p>
+	{% endfor %}
+	<div class="clear"></div>
+{% endblock %}
+
+{% block sidebar %}
+	{% cart %}
+	{% new_products %}
+{% endblock %}

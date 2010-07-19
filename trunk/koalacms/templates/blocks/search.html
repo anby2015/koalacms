@@ -1,0 +1,22 @@
+{% load i18n %}
+	<div class="header_right">	
+			<div class="bar">
+				<ul>
+					<li class="slogan">Search Categories:</li>
+					<li class="cat active" id="cat_0">{% trans "All" %}</li>
+					{% for category in categories %}
+						<li class="cat" id="cat_{{ category.id }}">{{ category.title }}</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+		
+		<div class="search_field">
+			<form method="get" action="{% url shop.views.search %}">
+				<input type="hidden" name="category" value="0" />
+				<p>
+					<span class="grey">{% trans "Search" %}:</span>&nbsp;&nbsp; <input type="text" name="search" class="search" /> 
+					<input type="submit" value="Go!" class="button" />
+				</p>
+			</form>
+		</div>

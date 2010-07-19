@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Select payment method" %}{% endblock %}
+
+{% block content %}
+<div class='payment'>
+	<h2>{{ order.title }} </h2>
+	<ul class='order_products'>
+		{% for item in products %}
+			<li><a href="{% url shop.views.product item.product.product_id %}">{{ item.product.product.title }}</a> {{ item.count }} × {{ item.product.cost }}</li>
+		{% endfor %}
+		<li>{% trans "Delivery type" %}: {{ order.delivery.title }}</li>
+		<li>{% trans "Delivery cost" %}: {{ order.delivery.cost }}</li>
+		<li>{% trans "Total cost" %}: {{ order.amount }}</li>
+	</ul>
+	
+	<ul class='order_details'>
+		<li>{% trans "Name" %}:{{ order.name }}</li>
+		{% if order.phone %}<li>{% trans "Phone" %}:{{ order.phone }}</li>{% endif %}
+		{% if order.email %}<li>{% trans "Email" %}:{{ order.email }}</li>{% endif %}
+		{% if order.address %}<li>{% trans "Address" %}:{{ order.address }}</li>{% endif %}
+		{% if order.comment %}<li>{% trans "Comment" %}:{{ order.comment }}</li>{% endif %}
+	</ul>
+	<ul class='payment_methods'>
+	{% for payment in payments %}
+			<li>
+				<b>{{ payment.title }}</b><p>{{ payment.description }}</p>
+				{{ payment.render }}
+			</li>
+			
+			{% empty %}
+				{% trans "No payment methods" %}
+		{% endfor %}
+	</ul>
+</div>
+{% endblock %}
