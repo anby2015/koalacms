@@ -1,0 +1,1 @@
+KoalaCMS allows you to build any complex online stores. Supports Webmoney, YandexMoney, etc. payment systems  and has an API for creating own payment modules. KoalaCMS based on Django, it means that you can use all the features of this wonderful framework.
